@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
+
+body {
+  background-color: #f2f2f2;
+  font-family: "Lato";
+  font-weight: 300;
+  font-size: 16px;
+  color: #555;
+
+  -webkit-overflow-scrolling: touch;
+
+  margin-top: 70px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway";
+  font-weight: 300;
+  color: #333;
+}
+p {
+  line-height: 28px;
+  margin-bottom: 25px;
+}
+
+.centered {
+  text-align: center;
+}
+
+a {
+  color: #f85c37;
+}
+
+a:hover, a:focus {
+    color: #7a7a7a;
+    text-decoration: none;
+    outline: 0;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.navbar {
+  font-weight: 800;
+  font-size: 14px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.navbar-inverse {
+  background: #2d2d2d;
+  border-color: #2d2d2d;
+}
+.navbar-inverse .navbar-nav > .active > a {
+  background-color: #ff7878;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #999;
+  font-weight: bolder;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+#headerwrap {
+  background: url(../src/north.jpeg) no-repeat center top;
+  margin-top: -10px;
+  padding-top: 20px;
+  text-align: center;
+  background-attachment: relative;
+  background-position: center center;
+  min-height: 500px;
+  width: 100%;
+
+  background-size: 100%;
+  background-size: cover;
+}
+
+#headerwrap h1 {
+  margin-top: 100px;
+  color: white;
+  font-size: 70px;
+  font-weight: 300;
+  letter-spacing: 3px;
+}
+
+#headerwrap h2 {
+  margin-top: 25px;
+  color: white;
+  font-size: 34px;
+  letter-spacing: 2px;
+  text-transform: lowercase;
+}
+
+.list-unstyled {
+  background-color: #e0e0e0;
+  padding-top: 21px;
+  padding-bottom: 21px;
+}
+.list-unstyled > li {
+  padding-left: 30px;
+  padding-bottom: 14px;
+  border-bottom: 5px solid #d0d0d0;
+}
+
+form {
+  margin-top: 140px;
+  padding-left: 75px;
+  padding-right: 25px;
+}
+
+.form-control {
+  width: 340px;
+}

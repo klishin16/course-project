@@ -1,0 +1,50 @@
+{% extends "wrapper.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/organizationInfo.css' %}" type="text/css">
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Course project</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/..">Домой</a></li>
+        <li class="active"><a href="organizations">Организации</a></li>
+        <li><a href="orders">Заказы</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="authentication">Вход</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item list-group-item-action">
+    <h3 id="desc">{{ organization.name }}</h3>
+  </li>
+  <li class="list-group-item list-group-item-action">
+    <h3>Директор: {{ organization.director.secondname }} {{ organization.director.name }}</h3>
+    <h4> Датта рождения: {{ organization.director.dateOfBirth }}</h4>
+  </li>
+  <li class="list-group-item list-group-item-action">
+    <h3>Список заказов организации</h3>
+      <ul class="list-group list-group-flush" id="ordersList">
+        {% for order in organization.orders %}
+          <li class="list-group-item list-group-item-action" id="order" >
+            <h4><a href="order?name={{ organization.name }}&title={{ order.title }}">{{ order.title }}</a></h4>
+          </li>
+        {% endfor %}
+      </ul>
+  </li>
+</ul>
+
+
+
+{% endblock %}

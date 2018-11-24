@@ -1,0 +1,84 @@
+{
+    "Список организаций": [
+        {
+            "name": "Автомастерская",
+            "director": {
+                "name": "Алексей",
+                "secondname": "Иванов",
+                "dateOfBirth": ""
+            },
+            "orders": [
+                {
+                    "title": "Первый заказ для автомастерской",
+                    "description": "Мой первый заказ",
+                    "customer": {
+                        "name": "Андрей",
+                        "secondname": "Андреевич"
+                    },
+                    "startdate": "",
+                    "enddate": "",
+                    "status": "Выполняется"
+                },
+                {
+                    "title": "Второй заказ для автомастерской",
+                    "description": "Второй первый заказ",
+                    "customer": {
+                        "name": "Андрей",
+                        "secondname": "Андреевич"
+                    },
+                    "startdate": "",
+                    "enddate": "",
+                    "status": "Выполняется"
+                },
+                {
+                    "title": "Починка тепловизора",
+                    "description": "Мой 2 заказ через админ панель",
+                    "customer": {
+                        "name": "Никита",
+                        "secondname": null
+                    },
+                    "startdate": "",
+                    "enddate": "",
+                    "status": "Выполняется"
+                }
+            ]
+        },
+        {
+            "name": "Третья организация",
+            "director": {
+                "name": "Никита",
+                "secondname": "Клишин",
+                "dateOfBirth": ""
+            },
+            "orders": [
+                {
+                    "title": "Паяльник",
+                    "description": "Починка пояльника",
+                    "customer": {
+                        "name": "Клишин",
+                        "secondname": null
+                    },
+                    "startdate": "",
+                    "enddate": "",
+                    "status": "Выполняется"
+                }
+            ]
+        },
+        {
+            "name": "Пятерочка",
+            "director": {
+                "name": "Дмитрий",
+                "secondname": "Владиславович",
+                "dateOfBirth": "2000-02-21"
+            },
+            "orders": []
+        }
+    ],
+    "users": [
+        {
+            "status": "admin",
+            "login": "admin",
+            "password": "1234"
+        }
+    ]
+}

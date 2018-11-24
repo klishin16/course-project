@@ -1,0 +1,110 @@
+{% extends "wrapper.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css">
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Course project</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#">Домой</a></li>
+            <li><a href="organizations">Организации</a></li>
+            <li><a href="orders">Заказы</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="authentication">Вход</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="headerwrap">
+      <div class="container">
+        <div class="row centered">
+          <div class="col-lg-8 col-lg-offset-2">
+            <h1>Система учета заказов</h1>
+            <h2>на обслуживание организацией</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="inform">
+      <div class="row centered">
+        <br><br>
+
+        <div class="col-lg-4">
+          <i class="fas fa-address-card"></i>
+          <h4>Организации</h4>
+          <p>
+            В базе данных {{ num_organizations }} организаций
+          </p>
+          <form action="organizations"><button type="submit" class="btn btn-success">Перейти</button></form>
+        </div>
+
+        <div class="col-lg-4">
+          <i class="fas fa-clipboard"></i>
+          <h4>Заказы</h4>
+          <p>
+            В базе данных {{ num_orders }} заказов
+          </p>
+        </div>
+
+        <div class="col-lg-4">
+          <i class="fa fa-trophy"></i>
+          <h4>Помощь</h4>
+          <p>
+            Еще немного крайне интерсного текста
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container wb">
+      <div class="row centered">
+        <br><br>
+        <div class="col-lg-8 col-lg-offset-2">
+          <h4>Мы создаем сайты</h4>
+          <p>
+            Норвегия – скандинавское страна, на территории которой расположены горы, ледники и глубокие прибрежные фьорды. Столица страны, город Осло, славится своими многочисленными парками, скверами и музеями. В коллекции Музея кораблей викингов собраны дубовые суда IX века. Из Бергена, где сохранилось множество разноцветных деревянных домов, ежедневно отправляются катера к величественному Согне-фьорду. В Норвегии популярны рыбалка, пеший туризм и катание на горных лыжах на курортах Лиллехаммера, где в 1994 году проходили Олимпийские игры.
+          </p><br><br>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-10 col-lg-offset-1">
+          <img src="src/north4.jpg" alt="" class="img-responsive">
+        </div>
+      </div>
+    </div>
+
+    <div id="red">
+      <div class="container">
+        <div class="row centered">
+          <div class="col-lg-8 col-lg-offset-2">
+            <h4>Разработка сайтов на профессинальном уровне</h4>
+            <p>Еще немного текста</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="f">
+      <div class="container">
+        <div class="row centered">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="https://vk.com/klishin_nd"><i class="fab fa-vk"></i></a>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

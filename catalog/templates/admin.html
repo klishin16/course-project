@@ -1,0 +1,124 @@
+{% extends "wrapper.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}" type="text/css">
+
+<p><h4 id="adminPanel">Панель администратора</h4>
+<form action="/"><button type="submit" class="btn btn-success">Домой</button></form>
+
+<form action="addOrder" method="post"> {% csrf_token %}
+  <h3>Форма добавления заказа</h3>
+  <div class="form-group">
+    <label><b>Название</b></label>
+    <input type="text" class="form-control" name="title" placeholder="Введите название заказа">
+  </div>
+  <div class="form-group">
+    <label>Описание</label>
+    <textarea class="form-control" rows="3" name="description" placeholder="Введите описание заказа"></textarea>
+  </div>
+  <div class="form-group">
+    <label><b>Организация</b></label>
+    <select class="form-control" name="organization">
+      <option value="value2" selected>Выберите из списка</option>
+        {% for organization in db %}
+            <option value="{{ organization.name }}">{{ organization.name }}</option>
+        {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Введите данные заказчика</label>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <input type="text" class="form-control" name="customerName" placeholder="Ведите имя заказчика">
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <input type="text" class="form-control" name="customerSecondname" placeholder="Ведите фамилию заказчика">
+        </div>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"></div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+      <div class="form-row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label for="startdate">Выберите датту начала</label>
+            <input type="date" name="startdate">
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label for="enddate">Выберите датту планируемого окончания</label>
+            <input type="date" name="enddate">
+        </div>
+      </div>
+  </div>
+  <div class="form-group">
+    <label>Установите статус заказа</label>
+    <select class="form-control" name="status">
+      <option value="Принят к выполнению" selected>Принят к выполнению</option>
+      <option value="Выполняется">Выполняется</option>
+      <option value="Выполен">Выпонен</option>
+    </select>
+  </div>
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+
+<form action="addOrganization" method="post"> {% csrf_token %}
+  <h3>Форма добавления организации</h3>
+  <div class="form-group">
+    <label><b>Название </b></label>
+    <input type="text" class="form-control" name="name" placeholder="Введите название организации">
+  </div>
+  <div class="form-group">
+    <label>Введите информацию о директоре организации</label>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <input type="text" class="form-control" name="directorName" placeholder="Ведите имя директора">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <input type="text" class="form-control" name="directoSecondname" placeholder="Ведите фамилию директора">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <label for="dateOfBirth">Выберите датту рождения</label>
+          <input type="date" name="dateOfBirth">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+
+<form action="removeOrder" method="post"> {% csrf_token %}
+  <h3>Форма удаления заказа</h3>
+  <div class="form-group">
+    <label><b>Выберите заказ для удаления</b></label>
+    <select class="form-control" name="order">
+      <option value="value" selected>Выберите из списка</option>
+        {% for organization in db %}
+          {% for order in organization.orders %}
+            <option value="{{ order.title }}">{{ order.title }}</option>
+          {% endfor %}
+        {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Удалить</button>
+</form>
+
+<form action="removeOrganization" method="post"> {% csrf_token %}
+  <h3>Форма удаления организации</h3>
+  <div class="form-group">
+    <label><b>Выберите организацию для удаления</b></label>
+    <select class="form-control" name="organization">
+      <option value="value" selected>Выберите из списка</option>
+        {% for organization in db %}
+            <option value="{{ organization.name }}">{{ organization.name }}</option>
+        {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Удалить</button>
+</form>
+
+{% endblock %}

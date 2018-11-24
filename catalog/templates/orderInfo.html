@@ -1,0 +1,59 @@
+{% extends "wrapper.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/orderInfo.css' %}" type="text/css">
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Course project</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/..">Домой</a></li>
+        <li><a href="organizations">Организации</a></li>
+        <li class="active"><a href="orders">Заказы</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="authentication">Вход</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item list-group-item-action">
+    <h2 id="desc">{{ order.title }}</h2>
+  </li>
+  <li class="list-group-item list-group-item-action">
+    <h3>Описание заказа: {{ order.description }}</h3>
+  </li>
+  <li class="list-group-item list-group-item-action">
+    <h3>Закачик: {{ order.customer.name }}  {{ order.customer.secondname }}</h3>
+  </li>
+  <li class="list-group-item list-group-item-action">
+    <h3 class="centered">Сроки выполнения заказа</h3>
+    <div class="container-fluid">
+      <div class="form-row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <h4>Датта начала:  {{ order.startdate }}</h4>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <h4>Датта планируемого окончания:  {{ order.enddate }}</h4>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item list-group-item-action">
+    <h3>Статус: {{ order.status }}</h3>
+  </li>
+</ul>
+
+
+{% endblock %}

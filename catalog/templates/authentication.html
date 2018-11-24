@@ -1,0 +1,45 @@
+{% extends "wrapper.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/authentication.css' %}" type="text/css">
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Course project</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/..">Домой</a></li>
+            <li><a href="organizations">Организации</a></li>
+            <li><a href="orders">Заказы</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li class="active"><a href="authentication">Вход</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  <form action="auth" method="post"> {% csrf_token %}
+  <div class="form-group">
+      <label for="InputLogin"><b>Login</b></label>
+    <input type="text" class="form-control" id="InputLogin" name="login" placeholder="Enter login">
+  </div>
+  <div class="form-group">
+    <label for="InputPassword"><b>Password</b></label>
+    <input type="password" class="form-control" id="InputPassword" name="password" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+
+{% endblock %}
