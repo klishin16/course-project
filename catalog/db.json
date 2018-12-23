@@ -5,73 +5,73 @@
             "director": {
                 "name": "Алексей",
                 "secondname": "Иванов",
-                "dateOfBirth": ""
+                "dateOfBirth": "2000-05-21"
             },
             "orders": [
                 {
-                    "title": "Первый заказ для автомастерской",
-                    "description": "Мой первый заказ",
-                    "customer": {
-                        "name": "Андрей",
-                        "secondname": "Андреевич"
-                    },
-                    "startdate": "",
-                    "enddate": "",
-                    "status": "Выполняется"
-                },
-                {
-                    "title": "Второй заказ для автомастерской",
-                    "description": "Второй первый заказ",
-                    "customer": {
-                        "name": "Андрей",
-                        "secondname": "Андреевич"
-                    },
-                    "startdate": "",
-                    "enddate": "",
-                    "status": "Выполняется"
-                },
-                {
-                    "title": "Починка тепловизора",
-                    "description": "Мой 2 заказ через админ панель",
+                    "title": "Новый заказ",
+                    "description": "лавлаьвлать",
                     "customer": {
                         "name": "Никита",
-                        "secondname": null
+                        "secondname": "Клишин"
                     },
-                    "startdate": "",
-                    "enddate": "",
-                    "status": "Выполняется"
+                    "startdate": "0001-02-12",
+                    "enddate": "2122-02-21",
+                    "status": "Принят к выполнению"
+                },
+                {
+                    "title": "Заказ Ивана",
+                    "description": "аввав",
+                    "customer": {
+                        "name": "Иван",
+                        "secondname": "Иванов"
+                    },
+                    "startdate": "2018-12-06",
+                    "enddate": "2018-12-05",
+                    "status": "Принят к выполнению"
                 }
             ]
         },
         {
             "name": "Третья организация",
             "director": {
-                "name": "Никита",
-                "secondname": "Клишин",
-                "dateOfBirth": ""
+                "name": "Клишин",
+                "secondname": "Никита",
+                "dateOfBirth": "2007-07-21"
             },
-            "orders": [
-                {
-                    "title": "Паяльник",
-                    "description": "Починка пояльника",
-                    "customer": {
-                        "name": "Клишин",
-                        "secondname": null
-                    },
-                    "startdate": "",
-                    "enddate": "",
-                    "status": "Выполняется"
-                }
-            ]
+            "orders": []
         },
         {
             "name": "Пятерочка",
             "director": {
-                "name": "Дмитрий",
-                "secondname": "Владиславович",
-                "dateOfBirth": "2000-02-21"
+                "name": "Геннадий",
+                "secondname": "Фамилия",
+                "dateOfBirth": "0021-12-21"
             },
-            "orders": []
+            "orders": [
+                {
+                    "title": "Продукты",
+                    "description": "Покупка продуктов",
+                    "customer": {
+                        "name": "Клишин",
+                        "secondname": "Никита"
+                    },
+                    "startdate": "3323-02-02",
+                    "enddate": "3232-02-12",
+                    "status": "Выполняется"
+                },
+                {
+                    "title": "аыаыаы",
+                    "description": "аыаыаыаы",
+                    "customer": {
+                        "name": "аыаыаы",
+                        "secondname": "аыаыаы"
+                    },
+                    "startdate": "0002-03-28",
+                    "enddate": "2018-12-04",
+                    "status": "Выполен"
+                }
+            ]
         }
     ],
     "users": [
@@ -79,6 +79,20 @@
             "status": "admin",
             "login": "admin",
             "password": "1234"
+        },
+        {
+            "login": "nik",
+            "password": "1234",
+            "name": "Никита",
+            "secondname": "Клишин",
+            "status": "customer"
+        },
+        {
+            "login": "ivan",
+            "password": "1234",
+            "name": "Иван",
+            "secondname": "Иванов",
+            "status": "customer"
         }
     ]
 }

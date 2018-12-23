@@ -14,5 +14,6 @@ urlpatterns = [
     path('addOrder', views.addOrder, name='addOrder'),
     path('addOrganization', views.addOrganization, name='addOrganization'),
     path('removeOrganization', views.removeOrganization, name='removeOrganization'),
-    path('removeOrder', views.removeOrder, name='removeOrder')
+    path('removeOrder', views.removeOrder, name='removeOrder'),
+    path('addUser', views.addUser, name='addUser')
 ]

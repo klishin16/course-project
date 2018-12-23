@@ -2,6 +2,7 @@ from django.shortcuts import render
 from pathlib import Path
 import json
 from django.http import HttpResponse
+import datetime
 
 # Create your views here.
 def index(request):
@@ -23,33 +24,59 @@ def organizations(request):
 def organizationInfo(request):
     if request.method == 'GET':
         name = request.GET.get('name')
-    print(name)
     path = Path('catalog/db.json')
     dbase = json.loads(path.read_text())
     for organization in dbase["Список организаций"]:
         if organization["name"] == name:
             break
-    return render(request, "organizationInfo.html", {"organization": organization})
+    #Сортировка заказов
+    ordersList = organization["orders"]
+    if request.GET.get("sort") != None:
+        sort = request.GET.get("sort")
+        if sort == "1":
+            ordersList.sort(key=lambda order: order["title"])
+        elif sort == "2":
+            ordersList.sort(key=lambda order: order["title"], reverse=True)
+        elif sort == "3":
+            ordersList.sort(key=lambda order: (datetime.datetime(year=1, month=1, day=1) - datetime.datetime.strptime(order["startdate"], '%Y-%m-%d')).days, reverse=False)
+        elif sort == "4":
+            ordersList.sort(key=lambda order: (datetime.datetime(year=1, month=1, day=1) - datetime.datetime.strptime(order["startdate"], '%Y-%m-%d')).days, reverse=True)
+    return render(request, "organizationInfo.html", {"organization": organization, "orders": ordersList})
 
 def orders(request):
     path = Path('catalog/db.json')
     dbase = json.loads(path.read_text())
-    list = dbase["Список организаций"]
-    return render(request, "orders.html", {"db": list})
+    ordersList = []
+    for organization in dbase["Список организаций"]:
+        for order in organization["orders"]:
+            ordersList.append(order)
+    print([o["title"] for o in ordersList])
+
+    sort = request.POST.get("sort")
+    if sort != None:
+        if sort == "1":
+            ordersList.sort(key=lambda order: order["title"])
+        elif sort == "2":
+            ordersList.sort(key=lambda order: order["title"], reverse=True)
+        elif sort == "3":
+            ordersList.sort(key=lambda order: (datetime.datetime(year=1, month=1, day=1) - datetime.datetime.strptime(order["startdate"], '%Y-%m-%d')).days, reverse=False)
+        elif sort == "4":
+            ordersList.sort(key=lambda order: (datetime.datetime(year=1, month=1, day=1) - datetime.datetime.strptime(order["startdate"], '%Y-%m-%d')).days, reverse=True)
+    return render(request, "orders.html", {"db": ordersList})
 
 def orderInfo(request):
     path = Path('catalog/db.json')
     dbase = json.loads(path.read_text())
-    name = request.GET.get('name')
-    title = request.GET.get('title')
+    title = request.GET.get("title")
+    print(title)
     for organization in dbase["Список организаций"]:
-        if organization["name"] == name:
-            for order in organization["orders"]:
-                if order["title"] == title:
-                    print(order)
-                    break
-            break
-    return render(request, "orderInfo.html", {"order": order, "organization": name})
+        print(organization["name"])
+        for order in organization["orders"]:
+            if order["title"] == title:
+                print(order)
+                return render(request, "orderInfo.html", {"order": order, "organization": organization["name"]})
+    else:
+        return render(request, "orders.html", {"db": ordersList})
 
 def authentication(request):
     return render(request, "authentication.html")
@@ -62,8 +89,17 @@ def auth(request):
     path = Path('catalog/db.json')
     dbase = json.loads(path.read_text())
     for user in dbase["users"]:
-        if user["status"] == "admin" and login == user["login"] and password == user["password"]:
-            return render(request, "admin.html", {"db": dbase["Список организаций"]})
+        if login == user["login"] and password == user["password"]:
+            if user["status"] == "admin":
+                return render(request, "admin.html", {"db": dbase["Список организаций"]})
+            elif user["status"] == "customer":
+                personalOrders = []
+                for organization in dbase["Список организаций"]:
+                    for order in organization["orders"]:
+                        if order["customer"]["name"] == user["name"] and order["customer"]["secondname"] == user["secondname"]:
+                            personalOrders.append(order)
+                print(personalOrders)
+                return render(request, "personalPage.html", {"person": user, "orders": personalOrders, "db" : dbase["Список организаций"]})
     else:
         return render(request, "index.html")
 
@@ -137,5 +173,24 @@ def removeOrder(request):
         for order in organization["orders"]:
             if order["title"] == orderTitle:
                 organization["orders"].remove(order)
+    path.write_text(json.dumps(dbase, ensure_ascii=False, indent=4))
+    return render(request, "admin.html", {"db": dbase["Список организаций"]})
+    
+def addUser(request):
+    userName = request.POST.get("userName")
+    userSecondname = request.POST.get("userSecondname")
+    login = request.POST.get("login")
+    password = request.POST.get("password")
+    status = request.POST.get("status")
+    path = Path('catalog/db.json')
+    dbase = json.loads(path.read_text())
+    user = {
+        "login": login,
+        "password": password,
+        "name": userName,
+        "secondname": userSecondname,
+        "status": status
+    }
+    dbase["users"].append(user)
     path.write_text(json.dumps(dbase, ensure_ascii=False, indent=4))
     return render(request, "admin.html", {"db": dbase["Список организаций"]})

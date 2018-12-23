@@ -19,7 +19,6 @@
         <li><a href="/..">Домой</a></li>
         <li class="active"><a href="organizations">Организации</a></li>
         <li><a href="orders">Заказы</a></li>
-        <li><a href="#">Контакты</a></li>
         <li><a href="authentication">Вход</a></li>
       </ul>
     </div>
@@ -35,10 +34,24 @@
   </li>
   <li class="list-group-item list-group-item-action">
     <h3>Список заказов организации</h3>
+    <form action="organization" method="get">
+      <input type="hidden" name="name" value="{{organization.name}}">
+      <div class="form-group" id="status-form">
+        <label for="status">Сортировать</label>
+        <select class="form-control" name="sort">
+          <option value="1" selected>По названию (вниз)</option>
+          <option value="2">По названию (вверх)</option>
+          <option value="3">По дате (вниз)</option>
+          <option value="4">По дате (вверх)</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Сортировать</button>
+    </form>
       <ul class="list-group list-group-flush" id="ordersList">
         {% for order in organization.orders %}
           <li class="list-group-item list-group-item-action" id="order" >
             <h4><a href="order?name={{ organization.name }}&title={{ order.title }}">{{ order.title }}</a></h4>
+            <h5>Дата начала: {{ order.startdate }}   Дата планируемого окончания: {{ order.enddate }} Статус: {{ order.status }}</h5>
           </li>
         {% endfor %}
       </ul>

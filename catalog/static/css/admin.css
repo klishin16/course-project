@@ -33,3 +33,14 @@ form {
 .btn-primary {
   margin-top: 17px;
 }
+
+#dates {
+  float: left; /*Задаем обтекание*/
+  margin-top: 5px;
+  margin-right: 10px;
+  text-align: center; /*Центрируем текст по горизонтали*/
+}
+
+#status-form {
+  margin-top: 50px;
+}

@@ -1,0 +1,96 @@
+{% extends "wrapper.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/personalPage.css' %}" type="text/css">
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Course project</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/..">Домой</a></li>
+        <li><a href="organizations">Организации</a></li>
+        <li><a href="orders">Заказы</a></li>
+        <li class="active"><a href="authentication">Выход</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div>
+    <h2 id="desc">Личный кабинет</h2>
+    <h3 style="margin-left: 45px">Список заказов</h3>
+</div>
+
+<ul class="list-group list-group-flush">
+  {% for order in orders %}
+    <li class="list-group-item list-group-item-action">
+      <h4><a href="order?title={{ order.title }}"> {{ order.title }} </a></h4>
+      <ul>
+        <li><h5>Дата начала: {{ order.startdate }}</h5></li>
+        <li><h5>Дата планируемого окончания: {{ order.enddate }}</h5></li>
+        <li><h5>Статус: {{ order.status }}</h5></li>
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+
+<form action="addOrder" method="post"> {% csrf_token %}
+  <h3>Добавить заказ</h3>
+  <div class="form-group">
+    <label><b>Название</b></label>
+    <input type="text" class="form-control" name="title" placeholder="Введите название заказа">
+  </div>
+  <div class="form-group">
+    <label>Описание</label>
+    <textarea class="form-control" rows="3" name="description" placeholder="Введите описание заказа"></textarea>
+  </div>
+  <div class="form-group">
+    <label><b>Организация</b></label>
+    <select class="form-control" name="organization">
+      <option value="value2" selected>Выберите из списка</option>
+        {% for organization in db %}
+            <option value="{{ organization.name }}">{{ organization.name }}</option>
+        {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <input type="hidden" class="form-control" name="customerName" value="{{ person.name }}">
+  </div>
+  <div class="form-group">
+    <input type="hidden" class="form-control" name="customerSecondname" value="{{ person.secondname }}">
+  </div>
+
+  <div class="form-group">
+    <div id="dates">
+      <label for="startdate">Выберите датту начала: </label>
+      <input type="date" name="startdate">
+    </div>
+    <div id="dates">
+      <label for="enddate">Выберите датту планируемого окончания: </label>
+      <input type="date" name="enddate">
+    </div>
+  </div>
+
+  <div class="form-group" id="status-form">
+    <label for="status">Установите статус заказа</label>
+    <select class="form-control" name="status">
+      <option value="Принят к выполнению" selected>Принят к выполнению</option>
+      <option value="Выполняется">Выполняется</option>
+      <option value="Выполен">Выпонен</option>
+    </select>
+  </div>
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+
+
+{% endblock %}

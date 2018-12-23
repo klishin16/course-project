@@ -19,22 +19,42 @@
         <li><a href="/..">Домой</a></li>
         <li><a href="organizations">Организации</a></li>
         <li class="active"><a href="orders">Заказы</a></li>
-        <li><a href="#">Контакты</a></li>
         <li><a href="authentication">Вход</a></li>
       </ul>
     </div>
   </div>
 </div>
 
+<div>
     <h2 id="desc">Список заказов</h2>
-      <ul class="list-group list-group-flush">
-      {% for organization in db %}
-        {% for order in organization.orders %}
-        <li class="list-group-item list-group-item-action">
-            <a href="order?name={{ organization.name }}&title={{ order.title }}"> {{ order.title }}  </a>
-        </li>
-        {% endfor %}
-      {% endfor %}
-    </ul>
+    <form action="orders" method="post"> {% csrf_token %}
+      <div class="form-group" id="status-form">
+        <label for="status">Сортировать</label>
+        <select class="form-control" name="sort">
+          <option value="1" selected>По названию (вниз)</option>
+          <option value="2">По названию (вверх)</option>
+          <option value="3">По дате (вниз)</option>
+          <option value="4">По дате (вверх)</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Сортировать</button>
+    </form>
+</div>
+
+<div id="inside">
+  <ul class="list-group list-group-flush">
+    {% for order in db %}
+      <li class="list-group-item list-group-item-action">
+        <a href="order?title={{ order.title }}"> {{ order.title }}  </a>
+        <ul class="list-group">
+          <li><h4>Дата начала: {{ order.startdate }}</h4></li>
+          <li><h4>Дата планируемого окончания: {{ order.enddate }}</h4></li>
+          <li><h4>Статус: {{ order.status }}</h4></li>
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>
 
 {% endblock %}
