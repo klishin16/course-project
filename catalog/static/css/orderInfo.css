@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
 
 body {
-  background-color: #f2f2f2;
+  background: url(../src/103.png) center top;
   font-family: "Lato";
   font-weight: 300;
   font-size: 16px;
@@ -61,6 +61,11 @@ hr {
   font-weight: bolder;
   font-size: 22px;
   letter-spacing: 1px;
+}
+
+.list-group {
+  padding-left: 21px;
+  padding-right: 21px;
 }
 
 #desc {

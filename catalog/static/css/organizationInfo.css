@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
 
 body {
-  background-color: #f2f2f2;
+  background: url(../src/103.png) center top;
   font-family: "Lato";
   font-weight: 300;
   font-size: 16px;
@@ -63,6 +63,11 @@ hr {
   letter-spacing: 1px;
 }
 
+.list-group {
+  padding-left: 21px;
+  padding-right: 21px;
+}
+
 #desc {
   padding-top: 34px;
   padding-bottom: 21px;
@@ -70,6 +75,12 @@ hr {
   font-size: 34px;
   color: rgb(78, 158, 141)
 }
+
+#info {
+    padding-left: 21px;
+    padding-right: 21px;
+}
+
 .centered {
   text-align: justify;
   padding-bottom: 21px;
